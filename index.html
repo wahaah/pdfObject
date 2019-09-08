@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Show PDF</title>
+    <meta charset="utf-8" />
+    <script src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.js'></script>
+  
+    <style type="text/css">
+        html,
+        body,
+        #pdf_viewer
+         {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+        <button id="btn1">打开pdf格式文件</button>
+        <!-- <button id="doc_viewer">打开doc格式文件</button>
+        <button id="ppt_viewer">打开ppt格式文件</button> -->
+        <div id="pdf_viewer"></div>
+   
+</body>
+<script type="text/javascript">
+    
+    // document.oncontextmenu = function () {return false;}
+    $("#btn1").click(function () {
+        $("#btn1").css({"display":"none"});
+        // document.oncontextmenu = function () {return false;}
+        if (PDFObject.supportsPDFs) {
+            var options = {
+                pdfOpenParams: {
+                    scrollbars: '0',
+                    toolbar: '0',
+                    statusbar: '0',
+                    location: '0',
+                    view: 'FitV',
+                    fallbackLink: true,
+                } //禁用工具栏代码
+            };
+            // PDF嵌入到网页
+            // PDFObject.embed("./file/a.pdf", "#pdf_viewer", options);
+            PDFObject.embed("./file/a.pdf", "#pdf_viewer", options);
+        } else {
+            location.href = "/canvas";
+        }
+
+        // 通过以下代码进行判断是否支持PDFObject预览
+        if (PDFObject.supportsPDFs) {
+            console.log("Yay, this browser supports inline PDFs.");
+        } else {
+            console.log("Boo, inline PDFs are not supported by this browser");
+        }
+    })
+    $("#doc_viewer").click(function () {
+        if (PDFObject.supportsPDFs) {
+            var options = {
+                pdfOpenParams: {
+                    scrollbars: '0',
+                    toolbar: '0',
+                    statusbar: '0',
+                    location: '0',
+                    view: 'FitV',
+                    fallbackLink: true
+                } //禁用工具栏代码
+            };
+            // PDF嵌入到网页
+            PDFObject.embed("./file/a.doc", "#doc_viewer", options);
+        } else {
+            location.href = "/canvas";
+        }
+
+        // 通过以下代码进行判断是否支持PDFObject预览
+        if (PDFObject.supportsPDFs) {
+            console.log("Yay, this browser supports inline PDFs.");
+        } else {
+            console.log("Boo, inline PDFs are not supported by this browser");
+        }
+    })
+    $("#ppt_viewer").click(function () {
+        if (PDFObject.supportsPDFs) {
+            var options = {
+                pdfOpenParams: {
+                    scrollbars: '0',
+                    toolbar: '0',
+                    statusbar: '0',
+                    location: '0',
+                    view: 'FitV',
+                    fallbackLink: true
+                } //禁用工具栏代码
+            };
+            // PDF嵌入到网页
+            PDFObject.embed("./file/a.ppt", "#ppt_viewer", options);
+        } else {
+            location.href = "/canvas";
+        }
+
+        // 通过以下代码进行判断是否支持PDFObject预览
+        if (PDFObject.supportsPDFs) {
+            console.log("Yay, this browser supports inline PDFs.");
+        } else {
+            console.log("Boo, inline PDFs are not supported by this browser");
+        }
+    })
+</script>
+
+</html>
